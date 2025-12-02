@@ -21,6 +21,7 @@
 
 
 5. Исправленный фрагмент кода:
+```bash
 resource "docker_image" "nginx" {
   name         = "nginx:latest"
   keep_locally = true
@@ -35,12 +36,14 @@ resource "docker_container" "nginx" {
     external = 9090
   }
 }
+```
 
 Вывод команды docker ps 
 <img width="1256" height="829" alt="Снимок экрана 2025-12-02 в 12 05 41" src="https://github.com/user-attachments/assets/38e88abc-db39-4929-97d5-0138902052d6" />
 
 6. Изменение имени контейнера
 
+```bash
 resource "docker_image" "nginx" {
   name         = "nginx:latest"
   keep_locally = true
@@ -55,7 +58,7 @@ resource "docker_container" "nginx" {
     external = 9090
   }
 }
-
+```
 Опасность ключа -auto-approve:
 
 Ключ -auto-approve автоматически подтверждает выполнение плана без интерактивного запроса подтверждения (без ввода yes).
@@ -77,7 +80,9 @@ CI/CD пайплайны: В автоматизированных процесс
 Вывод команды docker ps
 <img width="1254" height="825" alt="Снимок экрана 2025-12-02 в 14 46 21" src="https://github.com/user-attachments/assets/f8d7b5ac-ef9c-4964-ada9-2dd57bacb1ef" />
 
-7. {
+7.
+```bash
+{
   "version": 4,
   "terraform_version": "1.12.0",
   "serial": 3,
@@ -86,8 +91,9 @@ CI/CD пайплайны: В автоматизированных процесс
   "resources": [],
   "check_results": null
 }
+```
 
-8. keep_locally = true   # ← Этот параметр предотвращает удаление образа (наш код)
+10. keep_locally = true   # ← Этот параметр предотвращает удаление образа (наш код)
 
 keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation.
 
