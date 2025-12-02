@@ -93,7 +93,7 @@ CI/CD пайплайны: В автоматизированных процесс
 }
 ```
 
-10. keep_locally = true   # ← Этот параметр предотвращает удаление образа (наш код)
+8. keep_locally = true   # ← Этот параметр предотвращает удаление образа (наш код)
 
 keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation.
 
