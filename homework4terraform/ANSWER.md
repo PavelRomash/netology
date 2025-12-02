@@ -1,12 +1,12 @@
 Чек лист.
 1. Установка terraform
-![alt text](<Снимок экрана 2025-11-30 в 15.59.31.png>)
+<img width="917" height="247" alt="Снимок экрана 2025-12-02 в 15 03 14" src="https://github.com/user-attachments/assets/4b8443d7-6da1-415f-8e3c-24fb97feb513" />
 
 2. Гит репозиторий
-![alt text](<Снимок экрана 2025-11-30 в 15.24.31.png>)
+<img width="1434" height="964" alt="Снимок экрана 2025-11-30 в 15 24 31" src="https://github.com/user-attachments/assets/89630c79-c926-4ab0-b452-020ec25332ea" />
 
 3. Установка docker
-![alt text](<Снимок экрана 2025-11-27 в 18.00.35.png>)
+<img width="912" height="209" alt="Снимок экрана 2025-12-02 в 15 04 44" src="https://github.com/user-attachments/assets/3379cd72-71f9-4610-b759-379b9b9d9d3f" />
 
 # Задание 1
 
@@ -16,7 +16,9 @@
 
 3. "result": "GyL74evxK5BU7Rxf"
 
-4. Исправил ![alt text](<Снимок экрана 2025-11-27 в 18.00.35-1.png>)
+4. Исправил 
+<img width="1313" height="829" alt="Снимок экрана 2025-11-30 в 16 52 25" src="https://github.com/user-attachments/assets/b75ffa80-bf8e-4623-8dfd-c201698eb6f8" />
+
 
 5. Исправленный фрагмент кода:
 resource "docker_image" "nginx" {
@@ -34,7 +36,8 @@ resource "docker_container" "nginx" {
   }
 }
 
-Вывод команды docker ps ![alt text](<Снимок экрана 2025-12-02 в 12.05.41.png>)
+Вывод команды docker ps 
+<img width="1256" height="829" alt="Снимок экрана 2025-12-02 в 12 05 41" src="https://github.com/user-attachments/assets/38e88abc-db39-4929-97d5-0138902052d6" />
 
 6. Изменение имени контейнера
 
@@ -72,7 +75,7 @@ CI/CD пайплайны: В автоматизированных процесс
 Ночные деплои: Когда применение происходит в нерабочее время.
 
 Вывод команды docker ps
-![alt text](<Снимок экрана 2025-12-02 в 14.46.21.png>)
+<img width="1254" height="825" alt="Снимок экрана 2025-12-02 в 14 46 21" src="https://github.com/user-attachments/assets/f8d7b5ac-ef9c-4964-ada9-2dd57bacb1ef" />
 
 7. {
   "version": 4,
