@@ -48,10 +48,10 @@ D:\Netology\Задания\homework5terraform\ter-homeworks\02\src\.terrafotm.rc
     - разработка и отладка приложений.
 
 
-скриншот ЛК Yandex Cloud с созданной ВМ, где видно внешний ip-адрес
+скриншот ЛК Yandex Cloud с созданной ВМ
 <img width="1807" height="889" alt="Скриншот лк" src="https://github.com/user-attachments/assets/bbddb80b-e350-48de-8421-4fcf4a9a9e51" />
 
-скриншот консоли, curl должен отобразить тот же внешний ip-адрес
+скриншот консоли, curl отображает тот же внешний ip-адрес
 <img width="1449" height="859" alt="Скриншот 03 12 25_11 35 54" src="https://github.com/user-attachments/assets/f8e5b67d-21b7-42e7-83ce-f0a53fd6b748" />
 
 
