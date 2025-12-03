@@ -8,29 +8,31 @@
 
 4.
 Оошибка 1: Неправильное имя переменной SSH ключа
-'''bash
+```bash
 ### Было:
 ssh-keys = "ubuntu:${var.vms_ssh_root_key}"
 
 ### Правильно:
 ssh-keys = "ubuntu:${var.vms_ssh_public_root_key}"
-'''
+```
 
 Ошибка 2: Неправильный platform_id
-'''bash
+```bash
 ### Было:
 platform_id = "standart-v4"  #  опечатка "standart" v-4 излишне
 
 ### Правильно:
 platform_id = "standard-v1" дешево
-'''
+```
 
 Ошибка 3: При инициализации
+```bash
 ### Было:
 D:\Netology\Задания\homework5terraform\ter-homeworks\02\src\.terrafotm.rc
 
 ### Правильно:
 "C:\Users\Legion\AppData\Roaming\terrafotm.rc"
+```
 
 5. Подключился. 
 
@@ -72,7 +74,7 @@ D:\Netology\Задания\homework5terraform\ter-homeworks\02\src\.terrafotm.rc
 
 1. Объявил в файле outputs.tf один output
 
-'''bash
+```bash
 output "all_vms_info" {
   description = "Information about all virtual machines"
   value = {
@@ -88,12 +90,12 @@ output "all_vms_info" {
     }
   }
 }
-'''
+```
 
 2. Изменения применил.
 
 Вывод команды:
-'''bash
+```bash
 PS D:\Netology\Задания\homework5terraform\ter-homeworks\02\src> C:\Users\Legion\yandex-terraform\terraform.exe output      
 all_vms_info = {
   "db" = {
@@ -116,7 +118,7 @@ all_vms_info = {
     "instance_name" = "netology-develop-platform-web"
   }
 }
-'''
+```
 
 # Здание 5
 
@@ -126,7 +128,7 @@ all_vms_info = {
 
 3. Применил изменения
 
-'''bash
+```bash
 Outputs:
 
 all_vms_info = {
@@ -142,13 +144,13 @@ all_vms_info = {
     "instance_name" = "vm-netology-develop-platform-web-2cpu-1gb"
     "local_name" = "vm-netology-develop-platform-web-2cpu-1gb"
   }
-'''
+```
 
 # Задание 6
 
 1. ### Map переменная для ресурсов ВМ
 
-'''bash
+```bash
 variable "vms_resources" {
   type = map(object({
     cores         = number
@@ -169,9 +171,10 @@ variable "vms_resources" {
   }
   description = "Resources configuration for virtual machines"
 }
-'''
+```
 
 2. ### Map переменная для metadata (общая для всех ВМ)
+```bash
 variable "vm_common_metadata" {
   type = map(string)
   default = {
@@ -180,6 +183,7 @@ variable "vm_common_metadata" {
   }
   description = "Common metadata for all virtual machines"
 }
+```
 
 3. Закоментировал все, более не используемые переменные проекта.
 
