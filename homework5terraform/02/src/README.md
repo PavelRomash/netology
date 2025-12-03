@@ -49,9 +49,11 @@ D:\Netology\Задания\homework5terraform\ter-homeworks\02\src\.terrafotm.rc
 
 
 скриншот ЛК Yandex Cloud с созданной ВМ, где видно внешний ip-адрес
-
+<img width="1807" height="889" alt="Скриншот лк" src="https://github.com/user-attachments/assets/bbddb80b-e350-48de-8421-4fcf4a9a9e51" />
 
 скриншот консоли, curl должен отобразить тот же внешний ip-адрес
+<img width="1449" height="859" alt="Скриншот 03 12 25_11 35 54" src="https://github.com/user-attachments/assets/f8e5b67d-21b7-42e7-83ce-f0a53fd6b748" />
+
 
 # Задание 2
 
@@ -59,8 +61,10 @@ D:\Netology\Задания\homework5terraform\ter-homeworks\02\src\.terrafotm.rc
 
 2. Объявил нужные переменные в файле variables.tf
 
-3. Проверьте terraform plan. Изменений быть не должно.
+3. Проверил terraform plan. Изменений нет.
 Скриншот
+<img width="1543" height="989" alt="plan" src="https://github.com/user-attachments/assets/82f26925-33ed-4a50-bb73-0aea4c973247" />
+
 
 # Задание 3
 
@@ -189,3 +193,4 @@ variable "vm_common_metadata" {
 
 4. Проверил terraform plan. Изменений нет. 
 скриншот
+<img width="1546" height="942" alt="loacls plan" src="https://github.com/user-attachments/assets/9b078dff-01de-4f71-ac0b-805f1effcce2" />
