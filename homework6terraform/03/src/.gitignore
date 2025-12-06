@@ -1,0 +1,29 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+.terraformrc
+
+# Yandex Cloud
+*.auto.tfvars
+personal.auto.tfvars
+secrets.tfvars
+
+# Ansible
+inventory.ini
+for.ini
+hosts.ini
+hosts.yaml
+
+# Системные
+.DS_Store
+Thumbs.db
+
+
+2.2.png
+3диска storage.png
+вм storage.png
+вход правил без.png
+итог.png
+созданые вм.png
