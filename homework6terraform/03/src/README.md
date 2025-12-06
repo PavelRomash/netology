@@ -18,7 +18,7 @@
 resource "yandex_compute_instance" "web" {
   count = 2
 
-  name        = "web-${count.index + 1}"  # web-1 и web-2 (не web-0 и web-1)
+  name        = "web-${count.index + 1}" # web-1 и web-2
   platform_id = "standard-v3"
   zone        = var.default_zone
 
@@ -30,15 +30,15 @@ resource "yandex_compute_instance" "web" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd87vvgamed91jv09b4h"
+      image_id = var.vm_image_id  # Ubuntu 22.04 LTS
       size     = 10
     }
   }
 
   network_interface {
-    subnet_id      = data.yandex_vpc_subnet.default_b.id
-    nat            = true  # Публичный IP
-    security_group_ids = [yandex_vpc_security_group.example.id]
+    subnet_id          = data.yandex_vpc_subnet.default_b.id
+    nat                = true                                   # Публичный IP
+    security_group_ids = [yandex_vpc_security_group.example.id] # Назначение группы безопасности
   }
 
   metadata = {
@@ -46,10 +46,23 @@ resource "yandex_compute_instance" "web" {
   }
 
   scheduling_policy {
-    preemptible = true
+    preemptible = true # (прерываемая ВМ)
   }
 
   allow_stopping_for_update = true
+}
+
+
+output "vm_info" {
+  value = [
+    for vm in yandex_compute_instance.web : {
+      name        = vm.name
+      id          = vm.id
+      internal_ip = vm.network_interface[0].ip_address
+      external_ip = vm.network_interface[0].nat_ip_address
+      fqdn        = vm.fqdn
+    }
+  ]
 }
 ```
 
