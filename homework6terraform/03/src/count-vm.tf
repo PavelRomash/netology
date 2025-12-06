@@ -1,5 +1,3 @@
-# Файл count-vm.tf
-
 # Создание двух одинаковых ВМ с использованием count
 resource "yandex_compute_instance" "web" {
   count = 2
@@ -38,7 +36,7 @@ resource "yandex_compute_instance" "web" {
   allow_stopping_for_update = true
 }
 
-# Вывод информации о созданных ВМ
+
 output "vm_info" {
   value = [
     for vm in yandex_compute_instance.web : {
