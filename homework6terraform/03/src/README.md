@@ -13,9 +13,7 @@
 
 1. Создал файл count-vm.tf, назначил группу безопасности из 1го задания
 
-# Файл count-vm.tf
 '''bash
-
 # Создание двух одинаковых ВМ с использованием count
 resource "yandex_compute_instance" "web" {
   count = 2
@@ -53,10 +51,11 @@ resource "yandex_compute_instance" "web" {
 
   allow_stopping_for_update = true
 }
+'''
 
 2. Создал файл for_each-vm.tf
 
-''' bash
+'''bash
 variable "each_vm" {
   type = list(object({
     vm_name     = string
@@ -115,7 +114,6 @@ resource "yandex_compute_instance" "database" {
 
 1. Создал 3 одинаковых виртуальных диска размером 1 Гб с помощью ресурса yandex_compute_disk и мета-аргумента count в файле disk_vm.tf
 
-disk_vm.tf
 '''bash
 resource "yandex_compute_disk" "storage_disks" {
   count = 3
