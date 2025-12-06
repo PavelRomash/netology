@@ -13,7 +13,7 @@
 
 1. Создал файл count-vm.tf, назначил группу безопасности из 1го задания
 
-'''bash
+```bash
 # Создание двух одинаковых ВМ с использованием count
 resource "yandex_compute_instance" "web" {
   count = 2
@@ -51,11 +51,11 @@ resource "yandex_compute_instance" "web" {
 
   allow_stopping_for_update = true
 }
-'''
+```
 
 2. Создал файл for_each-vm.tf
 
-'''bash
+```bash
 variable "each_vm" {
   type = list(object({
     vm_name     = string
@@ -103,7 +103,7 @@ resource "yandex_compute_instance" "database" {
 
   allow_stopping_for_update = true
 }
-'''
+```
 
 Инициализировал проект, выполнил код
 Скриншот созданных вм
@@ -114,7 +114,7 @@ resource "yandex_compute_instance" "database" {
 
 1. Создал 3 одинаковых виртуальных диска размером 1 Гб с помощью ресурса yandex_compute_disk и мета-аргумента count в файле disk_vm.tf
 
-'''bash
+```bash
 resource "yandex_compute_disk" "storage_disks" {
   count = 3
 
@@ -123,7 +123,7 @@ resource "yandex_compute_disk" "storage_disks" {
   zone     = var.default_zone
   size     = 1  # 1 ГБ
 }
-'''
+```
 
 2. Создал в том же файле одиночную(использовать count или for_each запрещено из-за задания №4) ВМ c именем "storage" . Использовал блок dynamic secondary_disk{..} и мета-аргумент for_each для подключения созданных мной дополнительных дисков.
 
