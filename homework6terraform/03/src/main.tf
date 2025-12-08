@@ -7,6 +7,10 @@ data "yandex_vpc_subnet" "default_b" {
   name = var.existing_subnet_name
 }
 
+data "yandex_compute_image" "ubuntu" {
+  family = "ubuntu-2204-lts"
+}
+
 # Выводим информацию для проверки
 locals {
   network_info = {

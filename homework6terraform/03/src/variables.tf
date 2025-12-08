@@ -38,11 +38,3 @@ variable "vms_ssh_public_root_key" {
   default     = "C:\\Users\\Legion\\.ssh\\id_rsa.pub" # Путь к публичному SSH ключу
   description = "Path to SSH public key"
 }
-
-# Идентификатор образа ОС
-variable "vm_image_id" {
-  type        = string
-  default     = "fd8kb72eo1r5fs97a1du" # Ubuntu 22.04 LTS
-  description = "VM image ID"
-}
-

@@ -14,7 +14,7 @@ resource "yandex_compute_instance" "web" {
 
   boot_disk {
     initialize_params {
-      image_id = var.vm_image_id  # Ubuntu 22.04 LTS
+      image_id = data.yandex_compute_image.ubuntu.id  # Ubuntu 22.04 LTS
       size     = 10
     }
   }
