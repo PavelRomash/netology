@@ -1,0 +1,79 @@
+#cloud-config
+users:
+  - name: ubuntu
+    groups: sudo, docker
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ${ssh_public_key}
+
+packages:
+  - apt-transport-https
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+  - git
+  - jq
+  - unzip
+
+package_update: true
+package_upgrade: true
+
+runcmd:
+  # Установка Docker
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+  - echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+  - apt-get update
+  - apt-get install -y docker-ce docker-ce-cli containerd.io
+  
+  # Установка Docker Compose
+  - curl -L "https://github.com/docker/compose/releases/download/v2.20.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  - chmod +x /usr/local/bin/docker-compose
+  
+  # Настройка Docker
+  - usermod -aG docker ubuntu
+  - systemctl enable docker
+  - systemctl start docker
+  
+  # Создание рабочей директории
+  - mkdir -p /opt/app
+  - chown -R ubuntu:ubuntu /opt/app
+
+  
+  # SSL-сертификат для MySQL (Yandex Cloud)
+  - mkdir -p /opt/certs
+  - curl -s https://storage.yandexcloud.net/cloud-certs/CA.pem -o /opt/certs/ca.pem
+  - chmod 644 /opt/certs/ca.pem
+
+  # Установка Yandex Cloud CLI
+  - export HOME=/root
+  - curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash -s -- -i /usr/local/yandex-cloud
+  - ln -s /usr/local/yandex-cloud/bin/yc /usr/local/bin/yc
+
+
+  # Авторизация в Yandex Container Registry через IAM
+  - docker login cr.yandex -u iam -p $(yc iam create-token)
+
+  # Загрузка образа
+  - docker pull cr.yandex/crpp39jltqgd1ts6poa7/flask-app:latest
+
+
+  # Запуск контейнера с приложением Flask
+  - sh -c 'DB_PASSWORD=$(yc lockbox payload get mysql-password --format json | jq -r ".entries[0].text_value") && docker run -d --restart=always --name flask-app -p 80:5000 -e DB_HOST=rc1a-d5dflburq56ebeef.mdb.yandexcloud.net -e DB_NAME=appdb -e DB_USER=appuser -e DB_PASSWORD="$DB_PASSWORD" -e DB_SSL_CA=/certs/ca.pem -v /opt/certs/ca.pem:/certs/ca.pem:ro cr.yandex/crpp39jltqgd1ts6poa7/flask-app:latest'
+
+
+
+
+write_files:
+  - path: /etc/docker/daemon.json
+    content: |
+      {
+        "log-driver": "json-file",
+        "log-opts": {
+          "max-size": "10m",
+          "max-file": "3"
+        }
+      }
+
+  
