@@ -13,6 +13,10 @@ data "yandex_iam_service_account" "existing" {
   name      = "terraformfinal"
 }
 
+data "yandex_compute_image" "ubuntu" {
+  family = var.os_family
+}
+
 resource "yandex_compute_instance" "vm-1" {
   name        = "web-server"
   platform_id = "standard-v3"
@@ -27,7 +31,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd8vmcue7aajpmeo39kk" # Ubuntu 20.04 LTS
+      image_id = data.yandex_compute_image.ubuntu.id
       size     = 20
     }
   }

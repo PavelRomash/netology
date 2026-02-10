@@ -20,10 +20,8 @@ variable "ssh_public_key" {
   type        = string
 }
 
-variable "image_id" {
-  description = "VM image ID"
-  type        = string
-  default     = "fd8vmcue7aajpmeo39kk"  # Ubuntu 22.04
+variable "os_family" {
+  default = "ubuntu-2204-lts"
 }
 
 variable "vm_username" {
